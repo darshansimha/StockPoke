@@ -1,0 +1,17 @@
+CREATE TABLE public."StockNameAndSymbol"
+(
+  "Symbol" text NOT NULL,
+  "CompanyName" text,
+  "LastSale" text,
+  "MarketCap" text,
+  "IPOyear" text,
+  "Sector" text,
+  "Industry" text,
+  "SummaryQuoteURL" text,
+  "CompanyURL" text,
+  "LogoURL" text,
+  CONSTRAINT "StockNameAndSymbol_pkey" PRIMARY KEY ("Symbol")
+)
+WITH (
+  OIDS=FALSE
+);
