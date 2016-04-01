@@ -10,16 +10,27 @@ var arr = [];
 //Run the below script and get all the data you want
 var finalArr = [];
 var i = 0;
-$('#loadUrls').remove();
-$('body').append('<div id="loadUrls"></div>');
-function getData(i, arr){
-	$.get('http://finance.yahoo.com/q/pr?s='+arr[i], null, function(text){
-		$('#loadUrls').html(text);
-		finalArr.push($('#loadUrls .yfnc_modtitlew1 a:eq(1)').text());
+function getData(i, arr) {
+	$.get('http://finance.yahoo.com/q/pr?s=' + arr[i], null, function(text) {
+		var tmpvar = text.split('Website:  <a href="')[1];
+		if (tmpvar != null && tmpvar != undefined && tmpvar != '') {
+			var tempVar = tmpvar.split('"')[0];
+			if (tempVar != null && tempVar != undefined && tempVar != '') {
+				finalArr.push(tempVar);
+				localStorage.setItem('finalArr', finalArr);				
+			} else {
+				finalArr.push('');
+				localStorage.setItem('finalArr', finalArr);
+			}
+		} else {
+			finalArr.push('');
+			console.log('Im here');
+		}
 		i++;
-		if(arr.length > i){
+		if (arr.length > i) {
 			getData(i, arr);
 		} else {
+			console.log('Bonne Nuit');
 			localStorage.setItem('finalArr', finalArr);
 		}
 	});
