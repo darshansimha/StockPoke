@@ -1,17 +1,16 @@
-CREATE TABLE public."StockNameAndSymbol"
-(
-  "Symbol" text NOT NULL,
-  "CompanyName" text,
-  "LastSale" text,
-  "MarketCap" text,
-  "IPOyear" text,
-  "Sector" text,
-  "Industry" text,
-  "SummaryQuoteURL" text,
-  "CompanyURL" text,
-  "LogoURL" text,
-  CONSTRAINT "StockNameAndSymbol_pkey" PRIMARY KEY ("Symbol")
-)
-WITH (
-  OIDS=FALSE
-);
+DROP TABLE IF EXISTS `companyinformation`;
+CREATE TABLE IF NOT EXISTS `companyinformation` (
+  `Symbol` text NOT NULL,
+  `CompanyName` text NOT NULL,
+  `LastSale` double DEFAULT NULL,
+  `MarketCap` text,
+  `IPOyear` int(5) DEFAULT NULL,
+  `Sector` text,
+  `Industry` text,
+  `SummaryQuoteURL` text,
+  `CompanyLogoURL` text,
+  `CompanyURL` text,
+  `CreatedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifiedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Symbol`(10))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
